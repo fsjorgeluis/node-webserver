@@ -1,10 +1,16 @@
-const http = require('http');
+const express = require('express');
 
-http
-	.createServer((req, res) => {
-		res.write('Hola Mundo');
-		res.end();
-	})
-	.listen(4000);
+const app = express();
+const port = 4000;
 
-console.log('Escuchando el puerto 4000');
+app.get('/', function (req, res) {
+	res.send('Hola Mundo');
+});
+
+app.get('*', function (req, res) {
+	res.send('404 | Page not found');
+});
+
+app.listen(port, () => {
+	console.log(`Server running at http://localhost:${port}`);
+});
