@@ -3,12 +3,11 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
-app.get('/', function (req, res) {
-	res.send('Hola Mundo');
-});
+// Middleware Servir contenido estatico
+app.use(express.static('public'));
 
 app.get('*', function (req, res) {
-	res.send('404 | Page not found');
+	res.sendFile(__dirname + '/public/404.html');
 });
 
 app.listen(port, () => {
